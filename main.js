@@ -1,6 +1,13 @@
 "use strict";
 
 let body = document.body;
+let record = document.querySelector('.record');
+let stop = document.querySelector('.stop');
+let soundClips = document.querySelector('.sound-clips');
+let canvas = document.querySelector('.visualizer');
+let mainSection = document.querySelector('.main-controls');
+
+stop.disabled = true;
 
 body.addEventListener('keypress' , (e)=>{
     switch(e.key){

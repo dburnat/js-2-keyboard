@@ -1,19 +1,15 @@
 let body = document.body;
 let record = document.querySelector('.record');
 let stop = document.querySelector('.stop');
+let play = document.querySelector('.play');
 let soundClips = document.querySelector('.sound-clips');
 let canvas = document.querySelector('.visualizer');
 let mainSection = document.querySelector('.main-controls');
 let audioClip = document.querySelector('.clip');
 
 stop.disabled = true;
-let timeOfStart = 10;
-let timeOfPress = 15;
 
-
-let keyList = ['q' , 'w', 'e' , 'r' , 'a' , 's' , 'd' , 'f'];
-let numberOfTracks = 0;
-
+//creating new track
 let track = {
     length: 0,
 
@@ -23,82 +19,78 @@ let track = {
         [].push.call(this, elem);
     }
 };
-
-
 function startRecording(){
-    console.log('it works');
+    
     stop.disabled = false; // wlączamy dostęp do przycisku stop
     record.disabled = true;
-    
-   // let currentTrack = numberOfTracks; //numer ścieżki aktualni
-    // let timeOfStart = Date.now() //aktualny czas w sekundach
-    // let track = {
-    //     length: 0,
-    //     timeOfPress: 0,
+    console.log('it is recording');
 
-    //     addElem: function addElem(elem){
-    //         // obj.length is automatically incremented 
-    //         // every time an element is added.
-    //         [].push.call(this, elem , timeOfPress - timeOfStart)
-    //     }
-    // };
 
+    let timeOfStart = Date.now() //aktualny czas w sekundach
         body.addEventListener('keypress' , (e)=>{
             switch(e.key){
                 case 'q':
-                    let timeOfPress = Date.now();
-                    console.log(timeOfPress);
-                    track[0].push({sound: sound1} , {time:  timeOfPress - timeOfStart});
+                    sound1Add();                
                     break;
                 case 'w':
-                    timeOfPress = Date.now;
-                    console.log(e.key + timeOfPress);
-                    track.push({sound: sound2} , {time:  timeOfPress - timeOfStart});
+                    sound2Add(); 
                     break;
                 case 'e':
-                    timeOfPress = Date.now;
-                    console.log(e.key + timeOfPress);
-                    track.push({sound: sound3} , {time:  timeOfPress - timeOfStart});
+                    sound3Add(); 
                     break;
                 case 'r':
-                    timeOfPress = Date.now;
-                    console.log(e.key + timeOfPress);
-                    track.push({sound: sound4} , {time:  timeOfPress - timeOfStart});
+                    sound4Add(); 
                     break;
             }
         })
 
-        function sound1(){
-             let sound1 = document.querySelector('#sound1');
-             sound1.currentTime = 0;
-             sound1.play();
+        function sound1Add(){
+            let timeOfPress = Date.now();
+            console.log(timeOfPress);
+            track.addElem({audio: sound1, time: timeOfPress - timeOfStart});
+            console.log('dodano dzwiek1')
         }
-        function sound2(){
-             let sound2 = document.querySelector('#sound2');
-             sound2.currentTime = 0;
-             sound2.play();
+        function sound2Add(){
+            let timeOfPress = Date.now();
+            console.log(timeOfPress);
+            track.addElem({audio: sound2, time: timeOfPress - timeOfStart});
+            console.log('dodano dzwiek2')
         }
-        function sound3(){
-             let sound3 = document.querySelector('#sound3');
-             sound3.currentTime = 0;
-             sound3.play();
+        function sound3Add(){
+            let timeOfPress = Date.now();
+            console.log(timeOfPress);
+            track.addElem({audio: sound3, time: timeOfPress - timeOfStart});
+            console.log('dodano dzwiek3')
         }
-        function sound4(){
-             let sound4 = document.querySelector('#sound4');
-             sound4.currentTime = 0;
-             sound4.play();
+        function sound4Add(){
+            let timeOfPress = Date.now();
+            console.log(timeOfPress);
+            track.addElem({audio: sound4, time: timeOfPress - timeOfStart});
+            console.log('dodano dzwiek4')
         }
+
+    
         
 }
 
-record.addEventListener("click", startRecording);
+function playTrack()
+{
+    console.log("playing  " + track);
+    for(let i = 0; track.length > i ; i++)
+    {
+        track[i].audio(track[i].time);
+    }
+}
 
+
+record.addEventListener("click", startRecording);
+play.addEventListener("click", playTrack);
 
 
 body.addEventListener('keypress' , (e)=>{
     switch(e.key){
         case 'q':
-            console.log(e.key + " poza");
+            console.log(e.key + "");
             sound1();
             break;
         case 'w':
@@ -116,23 +108,23 @@ body.addEventListener('keypress' , (e)=>{
     }
 })
 
-function sound1(){
+function sound1(time = 0){
      let sound1 = document.querySelector('#sound1');
-     sound1.currentTime = 0;
+     sound1.currentTime = time;
      sound1.play();
 }
-function sound2(){
+function sound2(time = 0){
      let sound2 = document.querySelector('#sound2');
-     sound2.currentTime = 0;
+     sound2.currentTime = time;
      sound2.play();
 }
-function sound3(){
+function sound3(time = 0){
      let sound3 = document.querySelector('#sound3');
-     sound3.currentTime = 0;
+     sound3.currentTime = time;
      sound3.play();
 }
-function sound4(){
+function sound4(time = 0){
      let sound4 = document.querySelector('#sound4');
-     sound4.currentTime = 0;
+     sound4.currentTime = time;
      sound4.play();
 } 

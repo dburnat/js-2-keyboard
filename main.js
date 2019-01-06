@@ -17,10 +17,10 @@ let numberOfTracks = 0;
 let track = {
     length: 0,
 
-    addElem: function addElem(elem, timen , namen){
+    addElem: function addElem(elem){
         // obj.length is automatically incremented 
         // every time an element is added.
-        [].push.call(this, elem, timen, namen);
+        [].push.call(this, elem);
     }
 };
 
@@ -31,17 +31,17 @@ function startRecording(){
     record.disabled = true;
     
    // let currentTrack = numberOfTracks; //numer ścieżki aktualni
-    let timeOfStart = Date.now() //aktualny czas w sekundach
-    let track = {
-        length: 0,
-        timeOfPress: 0,
+    // let timeOfStart = Date.now() //aktualny czas w sekundach
+    // let track = {
+    //     length: 0,
+    //     timeOfPress: 0,
 
-        addElem: function addElem(elem){
-            // obj.length is automatically incremented 
-            // every time an element is added.
-            [].push.call(this, elem , timeOfPress - timeOfStart)
-        }
-    };
+    //     addElem: function addElem(elem){
+    //         // obj.length is automatically incremented 
+    //         // every time an element is added.
+    //         [].push.call(this, elem , timeOfPress - timeOfStart)
+    //     }
+    // };
 
         body.addEventListener('keypress' , (e)=>{
             switch(e.key){

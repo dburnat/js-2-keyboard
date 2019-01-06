@@ -9,6 +9,10 @@ let audioClip = document.querySelector('.clip');
 
 stop.disabled = true;
 
+//TODO
+//Solve playing audio one after another
+
+
 //creating new track
 let track = {
     length: 0,
@@ -79,6 +83,7 @@ function playTrack()
     for(let i = 0; track.length > i ; i++)
     {
         track[i].audio(track[i].time);
+        
     }
 }
 

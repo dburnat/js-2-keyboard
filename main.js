@@ -1,15 +1,20 @@
 let body = document.body;
-let record = document.querySelector('.rec');
-let play = document.querySelector('.play');
-
-
+let record1 = document.getElementById('clip1rec');
+let play1 = document.getElementById('clip1play');
+let record2 = document.getElementById('clip2rec');
+let play3 = document.getElementById('clip3play');
+let record3 = document.getElementById('clip3rec');
+let play3 = document.getElementById('clip3play');
+let record4 = document.getElementById('clip4rec');
+let play4 = document.getElementById('clip4play');
 //TODO
 //Solve playing audio one after another - done
-// recording multiple tracks 
+//recording multiple tracks - done
+//find a way to stop recording all the time 
 
 
 //creating new track
-let track = {
+let track1 = {
     length: 0,
 
     addElem: function addElem(elem){
@@ -19,9 +24,37 @@ let track = {
     }
 };
 
+let track2 = {
+    length: 0,
 
+    addElem: function addElem(elem){
+        // obj.length is automatically incremented 
+        // every time an element is added.
+        [].push.call(this, elem);
+    }
+};
 
-function startRecording(){
+let track3 = {
+    length: 0,
+
+    addElem: function addElem(elem){
+        // obj.length is automatically incremented 
+        // every time an element is added.
+        [].push.call(this, elem);
+    }
+};
+
+let track4 = {
+    length: 0,
+
+    addElem: function addElem(elem){
+        // obj.length is automatically incremented 
+        // every time an element is added.
+        [].push.call(this, elem);
+    }
+};
+
+function startRecording(track, record){
     
     
     record.disabled = true; //blokujemy przycisk nagrywania
@@ -77,7 +110,7 @@ function startRecording(){
 
 
 
-function playTrack()
+function playTrack(track)
 {
     console.log("playing  " + track);
     for(let i = 0; track.length > i ; i++)
@@ -90,11 +123,39 @@ function playTrack()
     }
 }
 
+function call(calledtrack , callback){
+    return callback(calledtrack);
+}
 
 
 
-record.addEventListener("click", startRecording);
-play.addEventListener("click", playTrack);
+record1.addEventListener("click", function(){
+    startRecording(track1,this);
+});
+play1.addEventListener("click", function(){
+    playTrack(track1);
+});
+
+record2.addEventListener("click", function(){
+    startRecording(track2,this);
+});
+play2.addEventListener("click", function(){
+    playTrack(track2);
+});
+
+record3.addEventListener("click", function(){
+    startRecording(track3,this);
+});
+play3.addEventListener("click", function(){
+    playTrack(track3);
+});
+
+record4.addEventListener("click", function(){
+    startRecording(track4,this);
+});
+play4.addEventListener("click", function(){
+    playTrack(track4);
+});
 
 
 body.addEventListener('keypress' , (e)=>{

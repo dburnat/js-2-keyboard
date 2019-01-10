@@ -1,8 +1,9 @@
 let body = document.body;
+let stop = document.getElementsByClassName('stop');
 let record1 = document.getElementById('clip1rec');
 let play1 = document.getElementById('clip1play');
 let record2 = document.getElementById('clip2rec');
-let play3 = document.getElementById('clip3play');
+let play2 = document.getElementById('clip2play');
 let record3 = document.getElementById('clip3rec');
 let play3 = document.getElementById('clip3play');
 let record4 = document.getElementById('clip4rec');
@@ -12,6 +13,8 @@ let play4 = document.getElementById('clip4play');
 //recording multiple tracks - done
 //find a way to stop recording all the time 
 
+
+let timeoutID; //używane do zatrzymania funkcji
 
 //creating new track
 let track1 = {
@@ -57,7 +60,7 @@ let track4 = {
 function startRecording(track, record){
     
     
-    record.disabled = true; //blokujemy przycisk nagrywania
+    //record.disabled = true; //blokujemy przycisk nagrywania
     console.log('it is recording');
 
 
@@ -104,22 +107,25 @@ function startRecording(track, record){
             console.log('dodano dzwiek4')
         }
 
-    
+   
         
+}
+
+function stopRecording(){
+    console.log("stopped")
+    clearTimeout(timeoutID);
 }
 
 
 
 function playTrack(track)
 {
-    console.log("playing  " + track);
     for(let i = 0; track.length > i ; i++)
     {
         //setInterval( track.audio(), track.time);
         setTimeout(function(){
         track[i].audio();
         }, track[i].time);
-
     }
 }
 
@@ -128,6 +134,9 @@ function call(calledtrack , callback){
 }
 
 
+for(let i = 0; i < stop.length; i++)  
+     stop[i].addEventListener('click', stopRecording) ;
+
 
 record1.addEventListener("click", function(){
     startRecording(track1,this);
@@ -135,6 +144,8 @@ record1.addEventListener("click", function(){
 play1.addEventListener("click", function(){
     playTrack(track1);
 });
+
+
 
 record2.addEventListener("click", function(){
     startRecording(track2,this);

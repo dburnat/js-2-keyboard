@@ -9,19 +9,41 @@
   }
   
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Fjalla One', sans-serif;
     font-size: 0.8rem;
   }
   
   .wrapper {
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     margin: 0 50px 0 50px;
     padding: 15px;
     border: 1px solid #0088cc; 
   }
 
+  .sound-clips{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-around;
+    border: 5px rgba(168, 17, 17, 0.678);
+    background-color: #0088cc;
+    height: 500px;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+.clip{
+
+  background-color: #a1b7c2;
+  height: 100px;
+  width: 460px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
 
 .sounds{
     display: flex;
@@ -29,35 +51,36 @@
     margin-top: 150px;
 }
 
+.buttons{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  margin-right : 10px;
+  width: 130px;
+}
+
+.play {
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 50px;
+
+  border-color: transparent transparent transparent #202020;
+  transition: 100ms all ease;
+  cursor: pointer;
+
+  border-style: solid;
+  border-width: 30px 0 30px 60px;
+}
+
+.rec{
+  display:block;
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  border-radius: 50%;
+  border: 3px solid rgb(0, 0, 0);
+}
+
   
-  #buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  #buttons button {
-    font-size: 1rem;
-    padding: 1rem;
-    width: calc(50% - 0.25rem);
-  }
-  
-  button {
-    font-size: 1rem;
-    background: #0088cc;
-    text-align: center;
-    color: white;
-    border: none;
-    transition: all 0.2s;
-    padding: 0.5rem;
-  }
-  
-  button:hover, button:focus {
-    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-    background: #0ae;
-  }
-  
-  button:active {
-    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
-    transform: translateY(2px);
-  }

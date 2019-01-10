@@ -1,16 +1,11 @@
 let body = document.body;
-let record = document.querySelector('.record');
-let stop = document.querySelector('.stop');
+let record = document.querySelector('.rec');
 let play = document.querySelector('.play');
-let soundClips = document.querySelector('.sound-clips');
-let canvas = document.querySelector('.visualizer');
-let mainSection = document.querySelector('.main-controls');
-let audioClip = document.querySelector('.clip');
 
-stop.disabled = true;
 
 //TODO
-//Solve playing audio one after another
+//Solve playing audio one after another - done
+// recording multiple tracks 
 
 
 //creating new track
@@ -23,10 +18,13 @@ let track = {
         [].push.call(this, elem);
     }
 };
+
+
+
 function startRecording(){
     
-    stop.disabled = false; // wlączamy dostęp do przycisku stop
-    record.disabled = true;
+    
+    record.disabled = true; //blokujemy przycisk nagrywania
     console.log('it is recording');
 
 
@@ -77,9 +75,10 @@ function startRecording(){
         
 }
 
+
+
 function playTrack()
 {
-    play.disabled = true;
     console.log("playing  " + track);
     for(let i = 0; track.length > i ; i++)
     {
@@ -90,6 +89,8 @@ function playTrack()
 
     }
 }
+
+
 
 
 record.addEventListener("click", startRecording);
@@ -137,3 +138,4 @@ function sound4(time = 0){
      sound4.currentTime = time;
      sound4.play();
 } 
+

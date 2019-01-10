@@ -79,11 +79,15 @@ function startRecording(){
 
 function playTrack()
 {
+    play.disabled = true;
     console.log("playing  " + track);
     for(let i = 0; track.length > i ; i++)
     {
-        track[i].audio(track[i].time);
-        
+        //setInterval( track.audio(), track.time);
+        setTimeout(function(){
+        track[i].audio();
+        }, track[i].time);
+
     }
 }
 

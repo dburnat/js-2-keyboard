@@ -8,15 +8,16 @@ let record3 = document.getElementById('clip3rec');
 let play3 = document.getElementById('clip3play');
 let record4 = document.getElementById('clip4rec');
 let play4 = document.getElementById('clip4play');
-//TODO
-//Solve playing audio one after another - done
-//recording multiple tracks - done
-//find a way to stop recording all the time 
+
+let qkey = document.getElementById('q');
+let wkey = document.getElementById('w');
+let ekey = document.getElementById('r');
+let rkey = document.getElementById('r');
 
 
-let timeoutID; //używane do zatrzymania funkcji
 
-//creating new track
+
+//tworzenie czterech sciezek
 let track1 = {
     length: 0,
 
@@ -57,12 +58,14 @@ let track4 = {
     }
 };
 
+
+//funkcja odpowiedzialna za nagrywanie 
 function startRecording(track, record){
     
     
     //record.disabled = true; //blokujemy przycisk nagrywania
     console.log('it is recording');
-
+    record.disabled = true;
 
     let timeOfStart = Date.now() //aktualny czas w sekundach
         body.addEventListener('keypress' , (e)=>{
@@ -81,7 +84,7 @@ function startRecording(track, record){
                     break;
             }
         })
-
+        //funkcje dodania dźwięku do ścieżki, liczone od wcisniecia przycisku
         function sound1Add(){
             let timeOfPress = Date.now();
             console.log(timeOfPress);
@@ -117,9 +120,10 @@ function stopRecording(){
 }
 
 
-
-function playTrack(track)
+//funkcja odtwarzająca dźwięk
+function playTrack(track, record)
 {
+    record.disabled = false;
     for(let i = 0; track.length > i ; i++)
     {
         //setInterval( track.audio(), track.time);
@@ -138,37 +142,38 @@ for(let i = 0; i < stop.length; i++)
      stop[i].addEventListener('click', stopRecording) ;
 
 
+//event listenery poszczegolnych przyciskow     
 record1.addEventListener("click", function(){
     startRecording(track1,this);
 });
 play1.addEventListener("click", function(){
-    playTrack(track1);
+    playTrack(track1,record1);
 });
-
-
 
 record2.addEventListener("click", function(){
     startRecording(track2,this);
 });
 play2.addEventListener("click", function(){
-    playTrack(track2);
+    playTrack(track2, record2);
 });
 
 record3.addEventListener("click", function(){
     startRecording(track3,this);
 });
 play3.addEventListener("click", function(){
-    playTrack(track3);
+    playTrack(track3,record3);
 });
 
 record4.addEventListener("click", function(){
     startRecording(track4,this);
 });
 play4.addEventListener("click", function(){
-    playTrack(track4);
+    playTrack(track4,record4);
 });
 
 
+
+//event listener do odtwarzania dzwieku
 body.addEventListener('keypress' , (e)=>{
     switch(e.key){
         case 'q':
@@ -190,6 +195,52 @@ body.addEventListener('keypress' , (e)=>{
     }
 })
 
+//event listener do podswietlenia ramki wcisnietego przycisku
+
+body.addEventListener('keydown', (e)=>{
+    switch(e.key){
+        case 'q':
+            let qkey = document.getElementById('q');
+            qkey.classList.add('keyactive')
+            break;
+        case 'w':
+            let wkey = document.getElementById('w');
+            wkey.classList.add('keyactive')
+            break;
+        case 'e':
+            let ekey = document.getElementById('e');
+            ekey.classList.add('keyactive')
+            break;
+        case 'r':
+            let rkey = document.getElementById('r');
+            rkey.classList.add('keyactive')
+            break;
+    }
+})
+//event listener do usuniecia  ramki wcisnietego przycisku
+body.addEventListener('keyup', (e)=>{
+    switch(e.key){
+        case 'q':
+            let qkey = document.getElementById('q');
+            qkey.classList.remove('keyactive')
+            break;
+        case 'w':
+            let wkey = document.getElementById('w');
+            wkey.classList.remove('keyactive')
+            break;
+        case 'e':
+            let ekey = document.getElementById('e');
+            ekey.classList.remove('keyactive')
+            break;
+        case 'r':
+            let rkey = document.getElementById('r');
+            rkey.classList.remove('keyactive')
+            break;
+    }
+})
+
+
+//funkcje odtwarzajace dzwiek, z domyslnym argumentem 0 jesli jest odtwarzane po raz pierwszy
 function sound1(time = 0){
      let sound1 = document.querySelector('#sound1');
      sound1.currentTime = time;

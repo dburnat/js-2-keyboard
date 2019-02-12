@@ -57,7 +57,7 @@ let track4 = {
         [].push.call(this, elem);
     }
 };
-
+let timeoutID =0;
 
 //funkcja odpowiedzialna za nagrywanie 
 function startRecording(track, record){
